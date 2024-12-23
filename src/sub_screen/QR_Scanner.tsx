@@ -87,12 +87,7 @@ const QRScanner: React.FC = () => {
 
       {Device.length >= 0 ? (
         <ul>
-          {Device.map((device) => (
-            <li key={device.deviceId}>
-              <strong>{device.label}</strong>  
-              <span> ({device.kind})</span>
-            </li>
-          ))}
+          {Device}
         </ul>
       ) : (
         <p>デバイスが見つかりませんでした</p>
