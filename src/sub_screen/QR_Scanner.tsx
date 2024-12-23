@@ -4,6 +4,7 @@ import { Html5Qrcode } from 'html5-qrcode';
 const QRScanner: React.FC = () => {
   const [result, setResult] = useState<string>('');
   const [cameraError, setCameraError] = useState<string>('');
+  const [type, setType] = useState<string>('');
 
   useEffect(() => {
     const scanner = new Html5Qrcode("qr-reader");
@@ -48,9 +49,9 @@ const QRScanner: React.FC = () => {
       scanner.stop();
       // ここで取得したデータを持って在庫数入力する画面に移動
       if (Array.isArray(result)) {
-        alert("これは配列です");
+        setType("これは配列です");
       } else {
-        alert("これはJSONオブジェクトです");
+        setType("これはJSONオブジェクトです");
       }
     };
   }, []);
@@ -59,7 +60,7 @@ const QRScanner: React.FC = () => {
     <div>
       <h1>QRコードスキャナー</h1>
       <div id="qr-reader"></div>
-      <p>{result ? `スキャン結果: ${result}` : 'QRコードをスキャンしてください'}</p>
+      <p>{type ? `スキャン結果: ${type}` : 'QRコードをスキャンしてください'}</p>
     </div>
   );
 };
