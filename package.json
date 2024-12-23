@@ -6,7 +6,7 @@
   "homepage": "https://oceans7a-dev.github.io/HQ-Inventory-app",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "start": "react-scripts start",
     "build": "vite build",
     "test": "react-scripts test",
