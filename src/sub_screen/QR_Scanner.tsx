@@ -3,18 +3,28 @@ import { Html5Qrcode } from 'html5-qrcode';
 
 const QRScanner: React.FC = () => {
   const [result, setResult] = useState<string | null>(null);
-  const [Cselect, setCselect] = useState<string>('');
+  const [cameras, setCameras] = useState<MediaDeviceInfo[]>([]);
+  const [cameraError, setCameraError] = useState<string | null>(null);
+
   useEffect(() => {
     const scanner = new Html5Qrcode("qr-reader");
 
     navigator.mediaDevices.enumerateDevices().then((devices) => {
-      // 「back」が含まれるカメラを探す（背面カメラを自動選択）
-      const backCamera = devices.find(
-        (device) =>
-          device.kind === 'videoinput' && device.label.toLowerCase().includes('back')
+      const videoDevices = devices.filter((device) => device.kind === 'videoinput');
+      
+      setCameras(videoDevices);
+
+      if (videoDevices.length === 0) {
+        setCameraError('カメラが接続されていません');
+        return;
+      }
+
+      // 背面カメラを検索
+      const backCamera = videoDevices.find((device) =>
+        device.label.toLowerCase().includes('back')
       );
 
-      const cameraId = backCamera ? backCamera.deviceId : undefined;
+      const cameraId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
 
       if (cameraId) {
         // カメラが特定できた場合は直接指定して起動
@@ -35,12 +45,14 @@ const QRScanner: React.FC = () => {
           )
           .catch((err) => {
             console.error("スキャナの起動に失敗:", err);
+            setCameraError('スキャナの起動に失敗しました');
           });
-          setCselect(cameraId);
       } else {
-        setCselect(backCamera);
-        console.error("背面カメラが見つかりません");
+        setCameraError('背面カメラが見つかりません');
       }
+    }).catch((err) => {
+      console.error('デバイスの取得に失敗:', err);
+      setCameraError('カメラデバイスの取得に失敗しました');
     });
 
     return () => {
@@ -53,7 +65,22 @@ const QRScanner: React.FC = () => {
       <h1>QRコードスキャナー</h1>
       <div id="qr-reader"></div>
       <p>{result ? `スキャン結果: ${result}` : 'QRコードをスキャンしてください'}</p>
-      <p>{Cselect}</p>
+
+      {/* カメラがない場合のメッセージ表示 */}
+      {cameraError ? (
+        <p style={{ color: 'red' }}>{cameraError}</p>
+      ) : (
+        <div>
+          <h2>利用可能なカメラ</h2>
+          <ul>
+            {cameras.map((camera) => (
+              <li key={camera.deviceId}>
+                {camera.label || `カメラ ${camera.deviceId}`}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
