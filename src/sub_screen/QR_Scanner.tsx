@@ -15,6 +15,7 @@ const QRScanner: React.FC = () => {
       const videoDevices = devices.filter((device) => device.kind === 'videoinput');
       
       setCameras(videoDevices);
+      setDevice(videoDevices);
 
       if (videoDevices.length === 0) {
         setCameraError('カメラが接続されていません');
@@ -63,24 +64,12 @@ const QRScanner: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    navigator.mediaDevices.enumerateDevices()
-      .then((devices) => {
-        setDevice(devices);  // すべてのデバイスをセット
-      })
-      .catch((err) => {
-        console.error("デバイス一覧の取得に失敗:", err);
-        setError("デバイスの取得に失敗しました");
-      });
-  }, []);
-
   return (
     <div>
       <h1>QRコードスキャナー</h1>
       <div id="qr-reader"></div>
       <p>{result ? `スキャン結果: ${result}` : 'QRコードをスキャンしてください'}</p>
 
-      {/* カメラがない場合のメッセージ表示 */}
       {cameraError ? (
         <p style={{ color: 'red' }}>{cameraError}</p>
       ) : (
@@ -95,6 +84,7 @@ const QRScanner: React.FC = () => {
           </ul>
         </div>
       )}
+
       {Device.length > 0 ? (
         <ul>
           {Device.map((device) => (
