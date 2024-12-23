@@ -45,13 +45,14 @@ const QRScanner: React.FC = () => {
       setCameraError('カメラデバイスの取得に失敗しました');
     });
     return () => {
-      scanner.stop();
+      
       // ここで取得したデータを持って在庫数入力する画面に移動
       if (Array.isArray(result)) {
         console.log("これは配列です");
       } else {
         console.log("これはJSONオブジェクトです");
       }
+      scanner.stop();
     };
   }, []);
 
