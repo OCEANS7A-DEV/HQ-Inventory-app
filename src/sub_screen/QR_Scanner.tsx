@@ -5,6 +5,8 @@ const QRScanner: React.FC = () => {
   const [result, setResult] = useState<string | null>(null);
   const [cameras, setCameras] = useState<MediaDeviceInfo[]>([]);
   const [cameraError, setCameraError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [Device, setDevice] = useState<MediaDeviceInfo[]>([]);
 
   useEffect(() => {
     const scanner = new Html5Qrcode("qr-reader");
@@ -48,15 +50,6 @@ const QRScanner: React.FC = () => {
             setCameraError('スキャナの起動に失敗しました');
           });
       } else {
-        navigator.mediaDevices.enumerateDevices()
-          .then((devices) => {
-            devices.forEach((device) => {
-              setCameras(device);
-            });
-          })
-          .catch((err) => {
-            console.error("デバイス一覧の取得に失敗しました:", err);
-          });
 
         setCameraError('背面カメラが見つかりません');
       }
@@ -68,6 +61,17 @@ const QRScanner: React.FC = () => {
     return () => {
       scanner.stop();
     };
+  }, []);
+
+  useEffect(() => {
+    navigator.mediaDevices.enumerateDevices()
+      .then((devices) => {
+        setDevice(devices);  // すべてのデバイスをセット
+      })
+      .catch((err) => {
+        console.error("デバイス一覧の取得に失敗:", err);
+        setError("デバイスの取得に失敗しました");
+      });
   }, []);
 
   return (
@@ -90,6 +94,18 @@ const QRScanner: React.FC = () => {
             ))}
           </ul>
         </div>
+      )}
+      {Device.length > 0 ? (
+        <ul>
+          {Device.map((device) => (
+            <li key={device.deviceId}>
+              <strong>{device.label || `未指定のデバイス`}</strong>  
+              <span> ({device.kind})</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>デバイスが見つかりませんでした</p>
       )}
     </div>
   );
