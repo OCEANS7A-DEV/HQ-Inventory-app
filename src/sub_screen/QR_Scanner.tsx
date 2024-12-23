@@ -3,7 +3,7 @@ import { Html5Qrcode } from 'html5-qrcode';
 
 const QRScanner: React.FC = () => {
   const [result, setResult] = useState<string | null>(null);
-
+  const [Cselect, setCselect] = useState<string>('');
   useEffect(() => {
     const scanner = new Html5Qrcode("qr-reader");
 
@@ -18,18 +18,27 @@ const QRScanner: React.FC = () => {
 
       if (cameraId) {
         // カメラが特定できた場合は直接指定して起動
-        scanner.start(
-          { facingMode: 'environment' },
-          { fps: 10, qrbox: { width: 250, height: 250 } },
-          (decodedText) => {
-            setResult(decodedText);
-            scanner.stop();
-          },
-          (error) => {
-            console.warn('スキャン中のエラー:', error);
-          }
-        );
+        scanner
+          .start(
+            cameraId,
+            {
+              fps: 10,
+              qrbox: { width: 250, height: 250 },
+            },
+            (decodedText) => {
+              setResult(decodedText);
+              scanner.stop();
+            },
+            (error) => {
+              console.warn("スキャンエラー:", error);
+            }
+          )
+          .catch((err) => {
+            console.error("スキャナの起動に失敗:", err);
+          });
+          setCselect(cameraId);
       } else {
+        setCselect(backCamera);
         console.error("背面カメラが見つかりません");
       }
     });
@@ -44,6 +53,7 @@ const QRScanner: React.FC = () => {
       <h1>QRコードスキャナー</h1>
       <div id="qr-reader"></div>
       <p>{result ? `スキャン結果: ${result}` : 'QRコードをスキャンしてください'}</p>
+      <p>{Cselect}</p>
     </div>
   );
 };
