@@ -1,10 +1,18 @@
-import QRCodeScanner from './sub_screen/QR_Scanner';
+
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import React, { useState, useRef } from 'react';
 import './App.css';
+import TEST from './sub_screen/TEST';
+import QRCodeScanner from './sub_screen/QR_Scanner';
+
+
+
+
+
+
 
 function App() {
-  const [ currentPage, setCurrentPage ] = useState('QR_Scanner');
+  const [ currentPage, setCurrentPage ] = useState('TEST');
   const nodeRef = useRef(null);
 
   const getPageComponent = (page: string) => {
@@ -13,6 +21,8 @@ function App() {
         return
       case 'QR_Scanner':
         return <QRCodeScanner setCurrentPage={setCurrentPage} />;
+      case 'TEST':
+        return <TEST/>;
       default:
         return null;
     }
