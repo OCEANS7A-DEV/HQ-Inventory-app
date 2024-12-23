@@ -3,9 +3,9 @@ import { Html5Qrcode } from 'html5-qrcode';
 
 const QRScanner: React.FC = () => {
   const [result, setResult] = useState<string | null>(null);
-  const [cameras, setCameras] = useState<MediaDeviceInfo[]>([]);
+  // const [cameras, setCameras] = useState<MediaDeviceInfo[]>([]);
   const [cameraError, setCameraError] = useState<string | null>(null);
-  const [Device, setDevice] = useState<MediaDeviceInfo[]>([]);
+  // const [Device, setDevice] = useState<MediaDeviceInfo[]>([]);
 
   useEffect(() => {
     const scanner = new Html5Qrcode("qr-reader");
@@ -13,8 +13,8 @@ const QRScanner: React.FC = () => {
     navigator.mediaDevices.enumerateDevices().then((devices) => {
       const videoDevices = devices.filter((device) => device.kind === 'videoinput');
       
-      setCameras(videoDevices);
-      setDevice(videoDevices);
+      // setCameras(videoDevices);
+      // setDevice(videoDevices);
 
       if (videoDevices.length === 0) {
         setCameraError('カメラが接続されていません');
@@ -23,7 +23,7 @@ const QRScanner: React.FC = () => {
 
       // 背面カメラを検索
       const backCamera = videoDevices.find((device) =>
-        device.label.toLowerCase().includes('back')
+        device.label.toLowerCase().includes('back') || device.label.includes('背面')
       );
 
       const cameraId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
@@ -50,7 +50,7 @@ const QRScanner: React.FC = () => {
             setCameraError('スキャナの起動に失敗しました');
           });
       } else {
-        alert(Device)
+        
         setCameraError('背面カメラが見つかりません');
       }
     }).catch((err) => {
@@ -68,21 +68,6 @@ const QRScanner: React.FC = () => {
       <h1>QRコードスキャナー</h1>
       <div id="qr-reader"></div>
       <p>{result ? `スキャン結果: ${result}` : 'QRコードをスキャンしてください'}</p>
-
-      {cameraError ? (
-        <p style={{ color: 'red' }}>{cameraError}</p>
-      ) : (
-        <div>
-          <h2>利用可能なカメラ</h2>
-          <ul>
-            {cameras.map((camera) => (
-              <li key={camera.deviceId}>
-                {camera.label || `カメラ ${camera.deviceId}`}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 };
