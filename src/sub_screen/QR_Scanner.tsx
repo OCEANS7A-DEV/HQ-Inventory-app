@@ -5,7 +5,6 @@ const QRScanner: React.FC = () => {
   const [result, setResult] = useState<string | null>(null);
   const [cameras, setCameras] = useState<MediaDeviceInfo[]>([]);
   const [cameraError, setCameraError] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [Device, setDevice] = useState<MediaDeviceInfo[]>([]);
 
   useEffect(() => {
@@ -51,7 +50,7 @@ const QRScanner: React.FC = () => {
             setCameraError('スキャナの起動に失敗しました');
           });
       } else {
-
+        alert(Device)
         setCameraError('背面カメラが見つかりません');
       }
     }).catch((err) => {
@@ -83,14 +82,6 @@ const QRScanner: React.FC = () => {
             ))}
           </ul>
         </div>
-      )}
-
-      {Device.length >= 0 ? (
-        <ul>
-          {Device}
-        </ul>
-      ) : (
-        <p>デバイスが見つかりませんでした</p>
       )}
     </div>
   );
