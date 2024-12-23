@@ -18,24 +18,17 @@ const QRScanner: React.FC = () => {
 
       if (cameraId) {
         // カメラが特定できた場合は直接指定して起動
-        scanner
-          .start(
-            cameraId,
-            {
-              fps: 10,
-              qrbox: { width: 250, height: 250 },
-            },
-            (decodedText) => {
-              setResult(decodedText);
-              scanner.stop();
-            },
-            (error) => {
-              console.warn("スキャンエラー:", error);
-            }
-          )
-          .catch((err) => {
-            console.error("スキャナの起動に失敗:", err);
-          });
+        scanner.start(
+          { facingMode: 'environment' },
+          { fps: 10, qrbox: { width: 250, height: 250 } },
+          (decodedText) => {
+            setResult(decodedText);
+            scanner.stop();
+          },
+          (error) => {
+            console.warn('スキャン中のエラー:', error);
+          }
+        );
       } else {
         console.error("背面カメラが見つかりません");
       }
