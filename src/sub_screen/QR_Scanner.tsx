@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import QrScanner from 'qr-scanner';
 
-// new URLを使ってパスを解決
+// Web Workerのパスを解決
 QrScanner.WORKER_PATH = new URL('qr-scanner/qr-scanner-worker.min.js', import.meta.url).toString();
 
 const QRScanner: React.FC = () => {
@@ -11,23 +11,37 @@ const QRScanner: React.FC = () => {
 
   useEffect(() => {
     if (videoRef.current) {
+      // QRスキャナーのインスタンス生成
       const scanner = new QrScanner(
         videoRef.current,
-        (decodedText) => {
-          setResult(decodedText);
+        (decodedResult) => {
+          // オブジェクトで返される場合に安全にdataを抽出
+          if (typeof decodedResult === 'object' && decodedResult.data) {
+            setResult(decodedResult.data);
+          } else if (typeof decodedResult === 'string') {
+            setResult(decodedResult);
+          }
         },
         {
           onDecodeError: (error) => {
-            console.warn(error);
+            console.warn('QRコードの読み取りエラー:', error);
           },
           maxScansPerSecond: 2,
         }
       );
+      
       scannerRef.current = scanner;
-      scanner.start();
+      scanner.start().catch((error) => {
+        console.error('QRスキャナーの起動に失敗しました:', error);
+      });
 
+      // クリーンアップ処理
       return () => {
-        scanner.stop();
+        if (scannerRef.current) {
+          scannerRef.current.stop();
+          scannerRef.current.destroy();
+          scannerRef.current = null;
+        }
       };
     }
   }, []);
@@ -35,7 +49,7 @@ const QRScanner: React.FC = () => {
   return (
     <div>
       <h1>QRコードスキャナー</h1>
-      <video ref={videoRef} style={{ width: '100%', maxHeight: '400px' }} />
+      <video ref={videoRef} style={{ width: '100%', maxHeight: '300px' }} />
       <p>スキャン結果: {result || "読み取り中..."}</p>
     </div>
   );
