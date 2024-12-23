@@ -23,7 +23,7 @@ const QRScanner: React.FC = () => {
             cameraId,
             {
               fps: 10,
-              qrbox: { width: 250, height: 250 },
+              qrbox: 250,
             },
             (decodedText) => {
               setResult(decodedText);
