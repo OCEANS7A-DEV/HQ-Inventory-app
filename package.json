@@ -14,7 +14,7 @@
     "dev": "vite"
   },
   "dependencies": {
-    "html5-qrcode": "^2.3.8",
+    "qr-scanner": "^1.4.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-qr-code": "^2.0.15",
@@ -31,6 +31,7 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "gh-pages": "^6.2.0",
     "globals": "^15.13.0",
+    "rollup-plugin-visualizer": "^5.12.0",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.1",
     "vite": "^6.0.3"
