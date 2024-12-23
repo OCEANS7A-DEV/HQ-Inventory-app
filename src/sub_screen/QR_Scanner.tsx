@@ -1,19 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Html5QrcodeScanner } from 'html5-qrcode';
+
+declare global {
+  interface Window {
+    Html5QrcodeScanner: any;
+  }
+}
 
 const QRScanner: React.FC = () => {
   const [result, setResult] = useState<string | null>(null);
-  const scannerRef = useRef<HTMLDivElement>(null);
+  const scannerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (scannerRef.current) {
-      const scanner = new Html5QrcodeScanner(
-        'qr-reader',
-        { fps: 10, qrbox: 250 }
+      const scanner = new window.Html5QrcodeScanner(
+        'qr-reader', // HTML要素のID
+        { fps: 10, qrbox: 250 } // FPSとQRコードのサイズ
       );
+
       scanner.render(
-        (decodedText) => setResult(decodedText),
-        (error) => console.warn('読み取りエラー:', error)
+        (decodedText: string) => {
+          setResult(decodedText); // スキャン結果
+          scanner.clear(); // 成功後にスキャン停止
+        },
+        (error: any) => {
+          console.warn(error); // スキャンエラー
+        }
       );
     }
   }, []);
