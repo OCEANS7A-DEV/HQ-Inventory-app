@@ -23,7 +23,7 @@ const QRScanner: React.FC = () => {
             cameraId,
             {
               fps: 10,
-              qrbox: 250,
+              qrbox: { width: 250, height: 250 },
             },
             (decodedText) => {
               setResult(decodedText);
@@ -49,7 +49,7 @@ const QRScanner: React.FC = () => {
   return (
     <div>
       <h1>QRコードスキャナー</h1>
-      <div id="qr-reader" style={{ width: '500px' }}></div>
+      <div id="qr-reader"></div>
       <p>{result ? `スキャン結果: ${result}` : 'QRコードをスキャンしてください'}</p>
     </div>
   );
