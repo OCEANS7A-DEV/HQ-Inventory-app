@@ -12,7 +12,7 @@ import QRCodeScanner from './sub_screen/QR_Scanner';
 
 
 function App() {
-  const [ currentPage, setCurrentPage ] = useState('TEST');
+  const [ currentPage, setCurrentPage ] = useState('QR_Scanner');
   const nodeRef = useRef(null);
 
   const getPageComponent = (page: string) => {
