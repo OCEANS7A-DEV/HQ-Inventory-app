@@ -8,6 +8,6 @@ export default defineConfig({
   plugins: [
     react(),
     visualizer({ open: false })
-  ]
-  
+  ],
+  base: '/HQ-Inventory-app/'
 })
