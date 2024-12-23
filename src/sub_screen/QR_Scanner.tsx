@@ -48,6 +48,16 @@ const QRScanner: React.FC = () => {
             setCameraError('スキャナの起動に失敗しました');
           });
       } else {
+        navigator.mediaDevices.enumerateDevices()
+          .then((devices) => {
+            devices.forEach((device) => {
+              setCameras(device);
+            });
+          })
+          .catch((err) => {
+            console.error("デバイス一覧の取得に失敗しました:", err);
+          });
+
         setCameraError('背面カメラが見つかりません');
       }
     }).catch((err) => {
