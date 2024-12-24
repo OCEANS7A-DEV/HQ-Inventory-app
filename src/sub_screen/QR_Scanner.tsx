@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
 
-const QRScanner: React.FC = () => {
+
+interface SettingProps {
+  setCurrentPage: (page: string) => void;
+  setisLoading: (value: boolean) => void;
+}
+
+export default function QRScanner({ setCurrentPage }: SettingProps) {
   const [result, setResult] = useState<string>('');
-  const [cameraError, setCameraError] = useState<string>('');
 
   useEffect(() => {
     const scanner = new Html5Qrcode("qr-reader");
     navigator.mediaDevices.enumerateDevices().then((devices) => {
       const videoDevices = devices.filter((device) => device.kind === 'videoinput');
-      if (videoDevices.length === 0) {
-        setCameraError('カメラが接続されていません');
-        return;
-      }
       const backCamera = videoDevices.find((device) =>
         device.label.toLowerCase().includes('back') || device.label.includes('背面')
       );
@@ -27,6 +28,7 @@ const QRScanner: React.FC = () => {
             },
             (decodedText) => {
               setResult(decodedText);
+              setCurrentPage('');
               scanner.stop();
             },
             (error) => {
@@ -35,24 +37,15 @@ const QRScanner: React.FC = () => {
           )
           .catch((err) => {
             console.error("スキャナの起動に失敗:", err);
-            setCameraError('スキャナの起動に失敗しました');
           });
-      } else {
-        setCameraError('背面カメラが見つかりません');
       }
     }).catch((err) => {
       console.error('デバイスの取得に失敗:', err);
-      setCameraError('カメラデバイスの取得に失敗しました');
     });
     return () => {
-      
-      // ここで取得したデータを持って在庫数入力する画面に移動
-      if (Array.isArray(result)) {
-        console.log("これは配列です");
-      } else {
-        console.log("これはJSONオブジェクトです");
-      }
       scanner.stop();
+      // ここで取得したデータを持って在庫数入力する画面に移動
+      
     };
   }, []);
 
@@ -65,4 +58,4 @@ const QRScanner: React.FC = () => {
   );
 };
 
-export default QRScanner;
+
