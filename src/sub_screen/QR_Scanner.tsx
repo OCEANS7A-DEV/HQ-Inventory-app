@@ -51,7 +51,7 @@ export default function QRScanner({ setCurrentPage }: SettingProps) {
   return (
     <div>
       <h1>QRコードスキャナー</h1>
-      <div id="qr-reader"style={{ width: '100svw'}}></div>
+      <div id="qr-reader"style={{ width: '100dvw'}}></div>
       <p>{result ? `スキャン結果: ${result}` : 'QRコードをスキャンしてください'}</p>
     </div>
   );
