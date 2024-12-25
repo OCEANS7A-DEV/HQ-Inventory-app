@@ -28,8 +28,8 @@ export default function QRScanner({ setCurrentPage }: SettingProps) {
             },
             (decodedText) => {
               setResult(decodedText);
-              // console.log('移動')
-              setCurrentPage('Insert');
+              //console.log(result)
+              //setCurrentPage('Insert');
               scanner.stop();
             },
             (error) => {
