@@ -28,7 +28,8 @@ export default function QRScanner({ setCurrentPage }: SettingProps) {
             },
             (decodedText) => {
               setResult(decodedText);
-              console.log('移動')
+              // console.log('移動')
+              setCurrentPage('Insert');
               scanner.stop();
             },
             (error) => {
@@ -50,7 +51,7 @@ export default function QRScanner({ setCurrentPage }: SettingProps) {
   return (
     <div>
       <h1>QRコードスキャナー</h1>
-      <div id="qr-reader"></div>
+      <div id="qr-reader"style={{ width: '100svw'}}></div>
       <p>{result ? `スキャン結果: ${result}` : 'QRコードをスキャンしてください'}</p>
     </div>
   );

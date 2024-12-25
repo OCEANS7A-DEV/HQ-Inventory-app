@@ -23,7 +23,7 @@ function App() {
         return
       case 'QR_Scanner':
         return <QRCodeScanner setCurrentPage={setCurrentPage} setisLoading={setisLoading}/>;
-      case 'TEST':
+      case 'InsertPage':
         return <TEST/>;
       default:
         return null;
