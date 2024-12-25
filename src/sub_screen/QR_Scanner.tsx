@@ -28,7 +28,7 @@ export default function QRScanner({ setCurrentPage }: SettingProps) {
             },
             (decodedText) => {
               setResult(decodedText);
-              //console.log(result)
+              console.log(Array.isArray(result))
               //setCurrentPage('Insert');
               scanner.stop();
             },
