@@ -28,7 +28,7 @@ export default function QRScanner({ setCurrentPage }: SettingProps) {
             },
             (decodedText) => {
               setResult(decodedText);
-              setCurrentPage('');
+              console.log('移動')
               scanner.stop();
             },
             (error) => {
@@ -44,8 +44,6 @@ export default function QRScanner({ setCurrentPage }: SettingProps) {
     });
     return () => {
       scanner.stop();
-      // ここで取得したデータを持って在庫数入力する画面に移動
-      
     };
   }, []);
 
