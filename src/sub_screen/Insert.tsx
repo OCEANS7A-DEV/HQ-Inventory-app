@@ -25,13 +25,22 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
         let sData = data.find(row => row[1] === codeList[i])
         resultData.push(sData)
       }
-      console.log(resultData)
+      setData(resultData)
     }
     Dataset()
   },[])
 
   return(
-    <div>
+    <div className="setwindow">
+      <div>
+        {
+          Data.map((row,index) => (
+            <div key={index}>
+              
+            </div>
+          ))
+        }
+      </div>
     </div>
   );
 };

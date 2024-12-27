@@ -12,7 +12,7 @@ export const AllData = async(
       {
         method: 'POST',
         body: JSON.stringify({
-          action: 'allData',
+          action: 'allDataNum',
           sheetName: '在庫一覧',
         })
       },
