@@ -12,7 +12,7 @@ interface SettingProps {
 
 export default function InsertPage({ setCurrentPage, codeList, setisLoading }: SettingProps) {
   const [Data, setData] = useState<any[]>([]);
-  const [inputData, setInputData] = useState([])
+  const [inputData, setInputData] = useState()
 
   const numchange = (code: number, event: ChangeEvent<HTMLInputElement>) => {
     const numberValue = event.target.value;
@@ -38,9 +38,9 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
     };
   
     fetchData();
-    const inputList = [];
+    const inputList = {};
     for (let i = 1; i < codeList.length; i++){
-      inputList.push({[codeList[i]]: 0})
+      inputList[codeList[i]] = 0;
     }
     setInputData(inputList)
   }, []); // codeList に依存
