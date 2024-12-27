@@ -29,19 +29,11 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
               qrbox: { width: 250, height: 250 },
             },
             (decodedText) => {
-              scanner.stop();
-              console.log('スキャンストップ')
               setResult(decodedText);
-              console.log('データゲット')
-              console.log(decodedText)
               const dataArray = JSON.parse(decodedText)
-              console.log(dataArray)
               setCodeList(dataArray);
-              console.log('データセット')
               setCurrentPage('Insert');
-              console.log('画面移動')
-
-              
+              scanner.stop();
             },
             () => {
             }
