@@ -9,12 +9,10 @@ interface SettingProps {
 }
 
 export default function InsertPage({ setCurrentPage, codeList }: SettingProps) {
-  const [Data, setData] = useState([]);
+  //const [Data, setData] = useState([]);
 
   useEffect(() => {
-    const merchandise = AllData();
-    console.log(merchandise)
-    setData(merchandise);
+    console.log(codeList)
   })
 
   return(
