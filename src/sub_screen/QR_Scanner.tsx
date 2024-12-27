@@ -11,11 +11,8 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
   const [result, setResult] = useState<string>('');
 
   useEffect(() => {
-
     const scanner = new Html5Qrcode("qr-reader");
-
     navigator.mediaDevices.enumerateDevices().then((devices) => {
-      
       const videoDevices = devices.filter((device) => device.kind === 'videoinput');
       console.log(videoDevices)
       const backCamera = videoDevices.find((device) =>

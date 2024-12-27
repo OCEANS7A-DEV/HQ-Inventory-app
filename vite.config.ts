@@ -12,10 +12,6 @@ export default defineConfig({
   ],
   base: '/HQ-Inventory-app/',
   server: {
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, 'certs/server.key')),
-      cert: fs.readFileSync(path.resolve(__dirname, 'certs/server.crt')),
-    },
     host: '0.0.0.0', // これで全てのネットワークインターフェースでリッスン
     port: 5173,
   }
