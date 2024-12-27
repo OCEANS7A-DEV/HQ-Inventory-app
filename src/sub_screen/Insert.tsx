@@ -23,7 +23,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       const resultData = [];
       for (let i = 0; i < codeList.length; i++){
         console.log(codeList[i])
-        let sData = data.find(row => row[1] === codeList[i])
+        let sData = data.find(row => row[1] == codeList[i])
         resultData.push(sData)
       }
       //console.log(resultData)
