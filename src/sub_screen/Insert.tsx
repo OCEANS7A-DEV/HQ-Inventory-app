@@ -19,12 +19,13 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
   const [Data, setData] = useState<any[]>([]);
   const [inputData, setInputData] = useState<InputData>({});
 
-  const numchange = (code: number, event: ChangeEvent<HTMLInputElement>) => {
+  const numchange = (code: string, event: ChangeEvent<HTMLInputElement>) => {
     const numberValue = event.target.value;
-    const newinputData = [...inputData];
-    newinputData[code] = numberValue;
-    setInputData(newinputData);
-  }
+    setInputData(prevInputData => ({
+      ...prevInputData,
+      [code]: numberValue
+    }));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,7 +68,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
                     type="tel"
                     pattern="^[0-9\-\/]+$"
                     placeholder='現物数'
-                    value={inputData[row[1]]}
+                    value={inputData[row[1]] || ''}
                     onChange={(e) => numchange(row[1], e)}
                   />
                 </div>
