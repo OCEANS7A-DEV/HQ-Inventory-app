@@ -9,15 +9,6 @@ interface SettingProps {
   setisLoading: (value: boolean) => void;
 }
 
-const findRowsByColumn = (
-  array: any,
-  target: number[],
-  columnIndex: number
-): number[][] => {
-  return array.filter(
-    (row) => row[columnIndex] !== undefined && target.includes(row[columnIndex])
-  );
-};
 
 export default function InsertPage({ setCurrentPage, codeList, setisLoading }: SettingProps) {
   const [Data, setData] = useState([]);
@@ -26,8 +17,13 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
     setisLoading(true);
     //console.log(codeList)
     const data = AllData();
-    const matchingRows = findRowsByColumn(data, codeList, 1);
-    console.log(matchingRows)
+    const resultData = [];
+    for (let i = 0; i < codeList.length; i++){
+      let sData = data.find(row => row[1] === codeList[i])
+      resultData.push(sData)
+    }
+    console.log(resultData)
+    //console.log(data.filter(row => row[1] == codeList))
 
   })
 
