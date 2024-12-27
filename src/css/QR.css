@@ -34,7 +34,11 @@ a {
 }
 
 .products {
-  border: #222 solid 2px;
+  border: 1px solid #ccc; /* 枠線を追加（任意） */
+  padding: 10px; /* 内側の余白を設定 */
+  margin: 10px 0; /* 上下の外側余白 */
+  border-radius: 8px; /* 角を丸くする（任意） */
+  background-color: #f9f9f9; /* 背景色を設定（任意） */
 }
 
 .QR-product-Num {
@@ -64,6 +68,14 @@ a {
   padding: 8px;           /* セルの内側に余白 */
 }
 
+
+
+.setwindow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
 
 
 
