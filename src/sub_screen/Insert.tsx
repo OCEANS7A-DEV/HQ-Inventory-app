@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, ChangeEvent} from 'react';
 import '../css/QR.css'
 import { AllData } from '../backend/ServerEnd';
 
@@ -12,8 +12,11 @@ interface SettingProps {
 
 export default function InsertPage({ setCurrentPage, codeList, setisLoading }: SettingProps) {
   const [Data, setData] = useState<any[]>([]);
+  const [inputData, setInputData] = useState([])
 
-  
+  const numchange = (code: number, event: ChangeEvent<HTMLInputElement>) => {
+    const numberValue = event.target.value;
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +35,11 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
     };
   
     fetchData();
+    const inputList = [];
+    for (let i = 1; i < codeList.length; i++){
+      inputList.push({[codeList[i]]: 0})
+    }
+    setInputData(inputList)
   }, []); // codeList に依存
   
 
@@ -41,7 +49,18 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
         {
           Data.map((row,index) => (
             <div key={index}>
-              <div>{row}</div>
+              <div className="QR-product-code">{row[1]}</div>
+              <div className="QR-product-name">{row[2]}</div>
+              <div className="QR-product-Num">
+                <div className="QR-product-dataNum">{row[9]}</div>
+                <input
+                  className="QR-product-inputNum"
+                  type="tel"
+                  pattern="^[0-9\-\/]+$"
+                  value={inputData[row[2]]}
+                  onChange={(e) => numchange(index, e)}
+                />
+              </div>
             </div>
           ))
         }
