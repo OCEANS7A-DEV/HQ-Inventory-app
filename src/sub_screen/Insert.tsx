@@ -1,6 +1,6 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
 import '../css/QR.css'
-import { AllData } from '../backend/ServerEnd';
+import { AllData, UPDATE } from '../backend/ServerEnd';
 
 
 interface SettingProps {
@@ -26,6 +26,12 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       [code]: numberValue
     }));
   };
+  const DataUpdate = () => {
+    setisLoading(true);
+    UPDATE(inputData);
+    setisLoading(false);
+    setCurrentPage('QR_Scanner');
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,7 +86,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => setCurrentPage('QR_Scanner')}>
         QRスキャンへ
       </a>
-      <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => console.log(inputData)}>
+      <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => DataUpdate}>
         現物数入力
       </a>
     </div>
