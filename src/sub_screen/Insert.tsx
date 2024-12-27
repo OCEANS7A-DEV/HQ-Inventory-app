@@ -9,10 +9,15 @@ interface SettingProps {
   setisLoading: (value: boolean) => void;
 }
 
+interface InputData {
+  [key: string]: number | string;  // 必要な型を設定
+}
+
+
 
 export default function InsertPage({ setCurrentPage, codeList, setisLoading }: SettingProps) {
   const [Data, setData] = useState<any[]>([]);
-  const [inputData, setInputData] = useState()
+  const [inputData, setInputData] = useState<InputData>({});
 
   const numchange = (code: number, event: ChangeEvent<HTMLInputElement>) => {
     const numberValue = event.target.value;
