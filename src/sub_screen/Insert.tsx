@@ -17,7 +17,6 @@ export default function InsertPage({ setCurrentPage, codeList }: SettingProps) {
 
   return(
     <div>
-      
     </div>
   );
 };
