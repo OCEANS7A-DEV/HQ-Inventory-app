@@ -41,7 +41,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
         {
           Data.map((row,index) => (
             <div key={index}>
-
+              {Data}
             </div>
           ))
         }
