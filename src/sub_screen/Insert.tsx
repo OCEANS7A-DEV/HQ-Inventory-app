@@ -52,7 +52,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
               <div className="QR-product-code">{row[1]}</div>
               <div className="QR-product-name">{row[2]}</div>
               <div className="QR-product-Num">
-                <div>データ上在庫: {row[9]}</div>
+                <div className="QR-product-dataNum">データ上在庫: {row[9]}</div>
                 <div>
                   <input
                     className="QR-product-inputNum"
