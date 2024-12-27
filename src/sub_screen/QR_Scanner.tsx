@@ -11,13 +11,18 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
   const [result, setResult] = useState<string>('');
 
   useEffect(() => {
+
     const scanner = new Html5Qrcode("qr-reader");
+
     navigator.mediaDevices.enumerateDevices().then((devices) => {
+      
       const videoDevices = devices.filter((device) => device.kind === 'videoinput');
+      console.log(videoDevices)
       const backCamera = videoDevices.find((device) =>
         device.label.toLowerCase().includes('back') || device.label.includes('背面')
       );
       const cameraId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
+      console.log(cameraId)
       if (cameraId) {
         scanner
           .start(
@@ -30,7 +35,7 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
               setResult(decodedText);
               setCodeList(JSON.parse(decodedText));
               scanner.stop();
-              setCurrentPage('Insert');
+              //setCurrentPage('Insert');
             },
             () => {
             }
@@ -42,8 +47,9 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
     }).catch((err) => {
       console.error('デバイスの取得に失敗:', err);
     });
+
     return () => {
-      scanner.stop();
+      //scanner.stop();
     };
   }, []);
 

@@ -7,7 +7,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "start": "react-scripts start",
+    "start": "vite",
     "build": "vite build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.2",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@types/react-transition-group": "^4.4.12",

@@ -27,8 +27,10 @@ function App() {
         return <QRCodeScanner setCurrentPage={setCurrentPage} setCodeList={setCodeList}/>;
       case 'InsertPage':
         return <InsertPage setCurrentPage={setCurrentPage} codeList={codeList}/>;
+      case 'TEST':
+        return <TEST/>;
       default:
-        return null;
+        return <TEST/>;
     }
   };
 
