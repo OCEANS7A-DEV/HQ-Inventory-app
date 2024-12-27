@@ -14,7 +14,7 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
     const scanner = new Html5Qrcode("qr-reader");
     navigator.mediaDevices.enumerateDevices().then((devices) => {
       const videoDevices = devices.filter((device) => device.kind === 'videoinput');
-      console.log(videoDevices)
+
       const backCamera = videoDevices.find((device) =>
         device.label.toLowerCase().includes('back') || device.label.includes('背面')
       );
@@ -31,8 +31,9 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
             (decodedText) => {
               setResult(decodedText);
               setCodeList(JSON.parse(decodedText));
+              
+              setCurrentPage('Insert');
               scanner.stop();
-              //setCurrentPage('Insert');
             },
             () => {
             }
