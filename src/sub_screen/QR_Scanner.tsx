@@ -4,10 +4,10 @@ import { Html5Qrcode } from 'html5-qrcode';
 
 interface SettingProps {
   setCurrentPage: (page: string) => void;
-  setisLoading: (value: boolean) => void;
+  setCodeList: (codes: any) => void;
 }
 
-export default function QRScanner({ setCurrentPage }: SettingProps) {
+export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingProps) {
   const [result, setResult] = useState<string>('');
 
   useEffect(() => {
@@ -28,8 +28,9 @@ export default function QRScanner({ setCurrentPage }: SettingProps) {
             },
             (decodedText) => {
               setResult(decodedText);
-              console.log(Array.isArray(result))
-              //setCurrentPage('Insert');
+              console.log(Array.isArray(result));
+              setCodeList(JSON.parse(decodedText));
+              setCurrentPage('Insert');
               scanner.stop();
             },
             (error) => {

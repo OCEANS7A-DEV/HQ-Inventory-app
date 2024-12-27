@@ -5,6 +5,7 @@ import './App.css';
 import TEST from './sub_screen/TEST';
 import QRCodeScanner from './sub_screen/QR_Scanner';
 import LoadingDisplay from './sub_screen/loading';
+import InsertPage from './sub_screen/Insert';
 
 
 
@@ -16,15 +17,16 @@ function App() {
   const [currentPage, setCurrentPage] = useState('QR_Scanner');
   const nodeRef = useRef(null);
   const [isLoading, setisLoading] = useState(false);
+  const [codeList, setCodeList] = useState([]);
 
   const getPageComponent = (page: string) => {
     switch (page) {
       case 'ListPage':
         return
       case 'QR_Scanner':
-        return <QRCodeScanner setCurrentPage={setCurrentPage} setisLoading={setisLoading}/>;
+        return <QRCodeScanner setCurrentPage={setCurrentPage} setCodeList={setCodeList}/>;
       case 'InsertPage':
-        return <TEST/>;
+        return <InsertPage setCurrentPage={setCurrentPage} codeList={codeList}/>;
       default:
         return null;
     }
