@@ -33,46 +33,35 @@ a {
   box-shadow: 0 0 0px 0 rgba(0, 0, 0, .5);
 }
 
-/* 商品の各要素の枠設定 */
-.products {
-  border: 1px solid #ccc; /* 枠線を追加（任意） */
-  background-color: #f9f9f9; /* 背景色を設定（任意） */
-  border-radius: 8px; /* 角を丸くする（任意） */
-  display: flex;
-  flex-direction: column;
-  margin: 0; /* 上下の外側余白をなくす */
-  padding: 0; /* 内側の余白をなくす */
-}
-
-/* 各項目の枠設定 */
-.QR-product-code, .QR-product-name, .QR-product-Num {
-  border: 1px solid #ccc; /* 枠線を追加 */
-  padding: 8px; /* 内側の余白を追加 */
-  margin: 0; /* 要素間の隙間をなくす */
-}
-
-/* QR-product-Numは入力フィールドを含むので特別なスタイルを追加 */
-.QR-product-Num {
-  display: flex;
-  align-items: center;
-}
-
-/* 入力フィールドのスタイル */
-.QR-product-inputNum {
-  margin-left: 10px;
-  width: 60px;
-  padding: 5px;
-  border: 1px solid #ccc; /* 入力フィールドにも枠線を追加 */
-  border-radius: 4px; /* 入力フィールドの角を丸くする（任意） */
-}
-
-/* 商品リストのスタイル */
 .products-window {
   display: flex;
   flex-direction: column; /* 縦方向のレイアウト */
-  gap: 0; /* 要素間の隙間をなくす */
+  gap: 15px; /* 要素間の隙間を指定 */
   width: 100%; /* 横幅調整 */
 }
+
+.products {
+  border: 1px solid #ccc; /* 枠線を追加（任意） */
+  padding: 10px; /* 内側の余白を設定 */
+  margin: 10px 0; /* 上下の外側余白 */
+  border-radius: 8px; /* 角を丸くする（任意） */
+  background-color: #f9f9f9; /* 背景色を設定（任意） */
+  border-collapse: collapse;
+}
+
+.QR-product-Num {
+  display: flex;
+}
+
+
+
+
+
+.QR-product-inputNum {
+  margin-left: 10px;
+  width: 60px;
+} 
+
 
 .products div {
   border-collapse: collapse;
