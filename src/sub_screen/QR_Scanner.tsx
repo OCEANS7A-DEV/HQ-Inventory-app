@@ -19,7 +19,7 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
         device.label.toLowerCase().includes('back') || device.label.includes('背面')
       );
       const cameraId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
-      console.log(cameraId)
+      //console.log(cameraId)
       if (cameraId) {
         scanner
           .start(
@@ -29,10 +29,14 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
               qrbox: { width: 250, height: 250 },
             },
             (decodedText) => {
-              setResult(decodedText);
-              setCodeList(JSON.parse(decodedText));
               console.log('画面切り替え')
+
+              setResult(decodedText);
+
+              setCodeList(JSON.parse(decodedText));
+              
               setCurrentPage('Insert');
+              
               scanner.stop();
             },
             () => {
