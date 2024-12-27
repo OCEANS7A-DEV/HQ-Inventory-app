@@ -41,3 +41,19 @@ a {
   display: flex;
 }
 
+
+.QR-product-inputNum {
+  width: 40px;
+} 
+
+
+.products div {
+  margin: 10px;
+  white-space: nowrap;
+  border: 1px solid #222; /* 境界線 */
+  padding: 8px;           /* セルの内側に余白 */
+}
+
+
+
+
