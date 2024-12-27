@@ -17,6 +17,8 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
     setisLoading(true);
     //console.log(codeList)
     const data = AllData();
+    console.log(data)
+    return
     const resultData = [];
     for (let i = 0; i < codeList.length; i++){
       let sData = data.find(row => row[1] === codeList[i])
@@ -25,7 +27,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
     console.log(resultData)
     //console.log(data.filter(row => row[1] == codeList))
 
-  })
+  },[])
 
   return(
     <div>
