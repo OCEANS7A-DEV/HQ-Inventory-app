@@ -51,6 +51,7 @@ a {
 
 .QR-product-Num {
   display: flex;
+  padding: 0;
 }
 
 
@@ -73,6 +74,7 @@ a {
 
 
 .setwindow {
+  width: 100svw;
   display: flex;
   flex-direction: column;
   align-items: center;
