@@ -48,11 +48,11 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       <div>
         {
           Data.map((row,index) => (
-            <div key={index}>
+            <div key={index} className="products">
               <div className="QR-product-code">{row[1]}</div>
               <div className="QR-product-name">{row[2]}</div>
               <div className="QR-product-Num">
-                <div className="QR-product-dataNum">{row[9]}</div>
+                <div className="QR-product-dataNum">データ上在庫{row[9]}</div>
                 <input
                   className="QR-product-inputNum"
                   type="tel"
