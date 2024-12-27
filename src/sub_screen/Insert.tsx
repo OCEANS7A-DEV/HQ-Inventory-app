@@ -16,6 +16,9 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
 
   const numchange = (code: number, event: ChangeEvent<HTMLInputElement>) => {
     const numberValue = event.target.value;
+    const newinputData = [...inputData];
+    newinputData[code] = numberValue;
+    setInputData(newinputData);
   }
 
   useEffect(() => {
@@ -60,7 +63,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
                     pattern="^[0-9\-\/]+$"
                     placeholder='現物数'
                     value={inputData[row[2]]}
-                    onChange={(e) => numchange(index, e)}
+                    onChange={(e) => numchange(row[2], e)}
                   />
                 </div>
               </div>
@@ -70,6 +73,9 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       </div>
       <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => setCurrentPage('QR_Scanner')}>
         QRスキャンへ
+      </a>
+      <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => console.log(inputData)}>
+        現物数入力
       </a>
     </div>
   );
