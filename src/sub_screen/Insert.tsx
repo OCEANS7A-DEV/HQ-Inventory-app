@@ -28,6 +28,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       setData(resultData)
     }
     Dataset()
+    setisLoading(false);
   },[])
 
   return(
