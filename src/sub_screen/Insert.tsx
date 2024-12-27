@@ -16,23 +16,24 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
   
 
   useEffect(() => {
-    setisLoading(true);
-    //console.log(codeList)
-    const Dataset = async () => {
-      const data = await AllData();
-      const resultData = [];
-      for (let i = 0; i < codeList.length; i++){
-        console.log(codeList[i])
-        let sData = data.find(row => row[1] == codeList[i])
-        resultData.push(sData)
+    const fetchData = async () => {
+      try {
+        setisLoading(true); // ローディング開始
+        const data = await AllData(); // 全データを取得
+        const resultData = codeList.map(code => {
+          return data.find(row => row[1] == code); // 条件に一致するデータを取得
+        });
+        setData(resultData.filter(Boolean)); // 有効なデータだけを設定
+      } catch (error) {
+        console.error("データ取得中にエラーが発生しました:", error);
+      } finally {
+        setisLoading(false); // 非同期操作完了後にローディング終了
       }
-      //console.log(resultData)
-      setData(resultData)
-    }
-    Dataset()
-    console.log(Data)
-    setisLoading(false);
-  },[])
+    };
+  
+    fetchData();
+  }, []); // codeList に依存
+  
 
   return(
     <div className="setwindow">
