@@ -41,6 +41,14 @@ a {
   display: flex;
 }
 
+.products-window {
+  display: flex;
+  flex-direction: column; /* 縦方向のレイアウト */
+  gap: 15px; /* 要素間の隙間を指定 */
+  width: 100%; /* 横幅調整 */
+}
+
+
 
 .QR-product-inputNum {
   width: 40px;
