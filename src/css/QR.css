@@ -76,8 +76,8 @@ a {
 }
 
 .QR-product-Num {
-  width: 100%;
   display: flex;
+  justify-items: right;
   padding: 0;
 }
 
