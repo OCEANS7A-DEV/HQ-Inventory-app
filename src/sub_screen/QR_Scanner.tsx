@@ -28,10 +28,7 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
             },
             (decodedText) => {
               setResult(decodedText);
-              console.log(result);
-              console.log(Array.isArray(decodedText));
-              console.log(Array.isArray(JSON.parse(decodedText)));
-              //setCodeList(JSON.parse(result));
+              setCodeList(JSON.parse(decodedText));
               setCurrentPage('Insert');
               scanner.stop();
             },
