@@ -44,7 +44,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
   
     fetchData();
     const inputList = {};
-    for (let i = 1; i < codeList.length; i++){
+    for (let i = 0; i < codeList.length; i++){
       inputList[codeList[i]] = 0;
     }
     setInputData(inputList)
