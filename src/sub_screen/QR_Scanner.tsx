@@ -35,8 +35,7 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
               setCurrentPage('Insert');
               scanner.stop();
             },
-            (error) => {
-              console.warn("スキャンエラー:", error);
+            () => {
             }
           )
           .catch((err) => {
