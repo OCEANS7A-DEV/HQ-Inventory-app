@@ -13,10 +13,16 @@ interface SettingProps {
 export default function InsertPage({ setCurrentPage, codeList, setisLoading }: SettingProps) {
   const [Data, setData] = useState([]);
 
+  
+
   useEffect(() => {
     setisLoading(true);
     //console.log(codeList)
-    const data = AllData();
+    const Dataset = async () => {
+      const alldata = await AllData();
+      return alldata;
+    }
+    const data = Dataset()
     console.log(data)
     return
     const resultData = [];
