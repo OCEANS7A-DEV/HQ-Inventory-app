@@ -4,7 +4,7 @@ import { Html5Qrcode } from 'html5-qrcode';
 
 interface SettingProps {
   setCurrentPage: (page: string) => void;
-  setCodeList: (codes: any) => void;
+  setCodeList: (codes: Array<any>) => void;
 }
 
 export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingProps) {
@@ -33,7 +33,8 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
               console.log('スキャンストップ')
               setResult(decodedText);
               console.log('データゲット')
-              setCodeList(JSON.parse(decodedText));
+              const dataArray = JSON.parse(decodedText)
+              setCodeList(dataArray);
               console.log('データセット')
               setCurrentPage('Insert');
               console.log('画面移動')
