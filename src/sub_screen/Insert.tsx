@@ -45,23 +45,22 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
 
   return(
     <div className="setwindow">
-      <div>
+      <div className="products-window">
         {
           Data.map((row,index) => (
             <div key={index} className="products">
               <div className="QR-product-code">{row[1]}</div>
               <div className="QR-product-name">{row[2]}</div>
               <div className="QR-product-Num">
-                <div className="QR-product-dataNum">データ上在庫{row[9]}</div>
-                <div>
-                  <input
-                  className="QR-product-inputNum"
-                  type="tel"
-                  pattern="^[0-9\-\/]+$"
-                  value={inputData[row[2]]}
-                  onChange={(e) => numchange(index, e)}
-                  />
-                </div>
+                データ上在庫: {row[9]}
+                <input
+                className="QR-product-inputNum"
+                type="tel"
+                pattern="^[0-9\-\/]+$"
+                value={inputData[row[2]]}
+                onChange={(e) => numchange(index, e)}
+                />
+            
               </div>
             </div>
           ))
