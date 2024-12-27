@@ -33,7 +33,7 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
               console.log('スキャンストップ')
               setResult(decodedText);
               console.log('データゲット')
-              //console.log(decodedText.json())
+              console.log(decodedText)
               const dataArray = JSON.parse(decodedText)
               console.log(dataArray)
               setCodeList(dataArray);
