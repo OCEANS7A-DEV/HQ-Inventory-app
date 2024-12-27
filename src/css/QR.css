@@ -49,10 +49,7 @@ a {
   border-collapse: collapse;
 }
 
-.QR-product-Num {
-  display: flex;
-  padding: 0;
-}
+
 
 
 
@@ -71,10 +68,14 @@ a {
   padding: 8px;           /* セルの内側に余白 */
 }
 
-
+.QR-product-Num {
+  width: 100%;
+  display: flex;
+  padding: 0;
+}
 
 .setwindow {
-  width: 100svw;
+  width: calc(100dvw - 40px);
   display: flex;
   flex-direction: column;
   align-items: center;
