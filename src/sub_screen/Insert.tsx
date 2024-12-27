@@ -19,20 +19,15 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
     setisLoading(true);
     //console.log(codeList)
     const Dataset = async () => {
-      const alldata = await AllData();
-      return alldata;
+      const data = await AllData();
+      const resultData = [];
+      for (let i = 0; i < codeList.length; i++){
+        let sData = data.find(row => row[1] === codeList[i])
+        resultData.push(sData)
+      }
+      console.log(resultData)
     }
-    const data = Dataset()
-    console.log(data)
-    return
-    const resultData = [];
-    for (let i = 0; i < codeList.length; i++){
-      let sData = data.find(row => row[1] === codeList[i])
-      resultData.push(sData)
-    }
-    console.log(resultData)
-    //console.log(data.filter(row => row[1] == codeList))
-
+    Dataset()
   },[])
 
   return(
