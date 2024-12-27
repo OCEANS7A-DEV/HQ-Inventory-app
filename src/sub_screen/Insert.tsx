@@ -6,13 +6,29 @@ import { AllData } from '../backend/ServerEnd';
 interface SettingProps {
   setCurrentPage: (page: string) => void;
   codeList: Array<any>;
+  setisLoading: (value: boolean) => void;
 }
 
-export default function InsertPage({ setCurrentPage, codeList }: SettingProps) {
-  //const [Data, setData] = useState([]);
+const findRowsByColumn = (
+  array: any,
+  target: number[],
+  columnIndex: number
+): number[][] => {
+  return array.filter(
+    (row) => row[columnIndex] !== undefined && target.includes(row[columnIndex])
+  );
+};
+
+export default function InsertPage({ setCurrentPage, codeList, setisLoading }: SettingProps) {
+  const [Data, setData] = useState([]);
 
   useEffect(() => {
-    console.log(codeList)
+    setisLoading(true);
+    //console.log(codeList)
+    const data = AllData();
+    const matchingRows = findRowsByColumn(data, codeList, 1);
+    console.log(matchingRows)
+
   })
 
   return(

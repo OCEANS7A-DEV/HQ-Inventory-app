@@ -26,7 +26,7 @@ function App() {
       case 'QR_Scanner':
         return <QRCodeScanner setCurrentPage={setCurrentPage} setCodeList={setCodeList}/>;
       case 'InsertPage':
-        return <InsertPage setCurrentPage={setCurrentPage} codeList={codeList}/>;
+        return <InsertPage setCurrentPage={setCurrentPage} codeList={codeList} setisLoading={setisLoading}/>;
       case 'TEST':
         return <TEST/>;
       default:
