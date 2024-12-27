@@ -53,9 +53,12 @@ a {
 
 .QR-product-code,
 .QR-product-name,
-.QR-product-dataNum, 
-.QR-product-inputNum {
+.QR-product-dataNum {
   padding: 8px;
+}
+
+.QR-product-inputNum {
+  margin: 8px;
 }
 
 

@@ -49,8 +49,8 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
         {
           Data.map((row,index) => (
             <div key={index} className="products">
-              <div className="QR-product-code">{row[1]}</div>
-              <div className="QR-product-name">{row[2]}</div>
+              <div className="QR-product-code">商品コード: {row[1]}</div>
+              <div className="QR-product-name">商品名: {row[2]}</div>
               <div className="QR-product-Num">
                 <div className="QR-product-dataNum">データ上在庫: {row[9]}</div>
                 <div>
