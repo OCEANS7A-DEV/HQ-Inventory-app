@@ -11,7 +11,7 @@ interface SettingProps {
 
 
 export default function InsertPage({ setCurrentPage, codeList, setisLoading }: SettingProps) {
-  const [Data, setData] = useState([]);
+  const [Data, setData] = useState<any[]>([]);
 
   
 
@@ -36,7 +36,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
         {
           Data.map((row,index) => (
             <div key={index}>
-              
+
             </div>
           ))
         }
