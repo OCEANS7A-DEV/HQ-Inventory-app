@@ -62,8 +62,8 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
                     type="tel"
                     pattern="^[0-9\-\/]+$"
                     placeholder='現物数'
-                    value={inputData[row[2]]}
-                    onChange={(e) => numchange(row[2], e)}
+                    value={inputData[row[1]]}
+                    onChange={(e) => numchange(row[1], e)}
                   />
                 </div>
               </div>
