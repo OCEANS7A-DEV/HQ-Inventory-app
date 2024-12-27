@@ -57,6 +57,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
                 className="QR-product-inputNum"
                 type="tel"
                 pattern="^[0-9\-\/]+$"
+                placeholder='現物数'
                 value={inputData[row[2]]}
                 onChange={(e) => numchange(index, e)}
                 />
