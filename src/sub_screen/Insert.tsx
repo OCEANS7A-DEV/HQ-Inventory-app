@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import '../css/QR.css'
 import { AllData } from '../backend/ServerEnd';
 
 
@@ -22,6 +22,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       const data = await AllData();
       const resultData = [];
       for (let i = 0; i < codeList.length; i++){
+        console.log(codeList[i])
         let sData = data.find(row => row[1] === codeList[i])
         resultData.push(sData)
       }
@@ -44,6 +45,9 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
           ))
         }
       </div>
+      <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => setCurrentPage('QR_Scanner')}>
+        QRスキャンへ
+      </a>
     </div>
   );
 };
