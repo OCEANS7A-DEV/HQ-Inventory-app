@@ -28,6 +28,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
   };
   const DataUpdate = () => {
     setisLoading(true);
+    console.log(inputData);
     UPDATE(inputData);
     setisLoading(false);
     setCurrentPage('QR_Scanner');
