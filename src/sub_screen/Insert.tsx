@@ -87,7 +87,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => setCurrentPage('QR_Scanner')}>
         QRスキャンへ
       </a>
-      <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => DataUpdate}>
+      <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => DataUpdate()}>
         現物数入力
       </a>
     </div>
