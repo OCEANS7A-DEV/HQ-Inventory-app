@@ -44,8 +44,8 @@ function App() {
         nodeRef={nodeRef}
         unmountOnExit
       >
+        <Toaster/>
         <div>
-          <Toaster/>
           <div ref={nodeRef} className="page">
             {getPageComponent(currentPage)}
           </div>
