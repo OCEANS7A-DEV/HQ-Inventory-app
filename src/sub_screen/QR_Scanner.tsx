@@ -53,9 +53,8 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
 
   return (
     <div>
-      <h1>QRコードスキャナー</h1>
+      <h1>QRコードをスキャンしてください。</h1>
       <div id="qr-reader"style={{ width: '100dvw'}}></div>
-      <p>{result ? `スキャン結果: ${result}` : 'QRコードをスキャンしてください'}</p>
     </div>
   );
 };
