@@ -9,11 +9,13 @@ interface SettingProps {
 
 export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingProps) {
   const [result, setResult] = useState<string>('');
+  const [devicename, setdevicename] = useState();
 
   useEffect(() => {
     const scanner = new Html5Qrcode("qr-reader");
     navigator.mediaDevices.enumerateDevices().then((devices) => {
       const videoDevices = devices.filter((device) => device.kind === 'videoinput');
+      setdevicename(videoDevices)
 
       const backCamera = videoDevices.find((device) =>
         device.label.toLowerCase().includes('back') || device.label.includes('背面')
@@ -55,6 +57,7 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
     <div>
       <h1>QRコードをスキャンしてください。</h1>
       <div id="qr-reader"style={{ width: '100dvw'}}></div>
+      <div>{devicename}</div>
     </div>
   );
 };
