@@ -1,6 +1,8 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
 import '../css/QR.css'
 import { AllData, UPDATE } from '../backend/ServerEnd';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 interface SettingProps {
@@ -26,10 +28,11 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       [code]: numberValue
     }));
   };
-  const DataUpdate = () => {
+  const DataUpdate = async () => {
     setisLoading(true);
-    //console.log(inputData);
-    UPDATE(inputData);
+    
+    const result = await UPDATE(inputData);
+    toast.success(result);
     setisLoading(false);
     setCurrentPage('QR_Scanner');
   }
@@ -90,6 +93,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => DataUpdate()}>
         現物数入力
       </a>
+      <ToastContainer/>
     </div>
   );
 };
