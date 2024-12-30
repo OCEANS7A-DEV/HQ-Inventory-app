@@ -32,7 +32,7 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
       
       if (cameras.length > 0) {
         const backCamera = cameras.find((device) =>
-          device.label.toLowerCase().includes('back') || device.label.includes('背面')
+          device.label.toLowerCase().includes('back') || device.label.includes('背面') || device.label.includes('カメラ')
         );
         const initialCameraId = backCamera ? backCamera.deviceId : cameras[0].deviceId;
         setSelectedCamera(initialCameraId);
