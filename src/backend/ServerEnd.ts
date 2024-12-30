@@ -1,5 +1,5 @@
 const Get_URL = 'https://script.google.com/macros/s/AKfycbwdZ3lhe2QH2BChceXrTsxzGAkUd9EgZ2AZ7pWXWlMJvwtOtOcjXDTOXUmdBRJgCs25/exec';
-
+const URL_STRING = "https://script.google.com/macros/s/AKfycbznkMazxV3wlmS66uEHcOSRkI_SBQkdfT_MfMzJnvueFkSwDxGFiLlmFtq-MfMM6ldL/exec";
 export default async function main() {};
 
 
@@ -33,7 +33,7 @@ export const UPDATE = async(
 ) => {
   try {
     const response = await fetch(
-      Get_URL,
+      URL_STRING,
       {
         method: 'POST',
         body: JSON.stringify({
