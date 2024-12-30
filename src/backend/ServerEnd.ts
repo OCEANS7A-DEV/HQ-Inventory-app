@@ -32,6 +32,7 @@ export const UPDATE = async(
   data: any
 ) => {
   try {
+    console.log(data);
     const response = await fetch(
       URL_STRING,
       {
