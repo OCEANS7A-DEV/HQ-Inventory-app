@@ -1,7 +1,7 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
 import '../css/QR.css'
 import { AllData, UPDATE } from '../backend/ServerEnd';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 
 
 

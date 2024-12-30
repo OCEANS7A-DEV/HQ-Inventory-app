@@ -6,8 +6,8 @@ import TEST from './sub_screen/TEST';
 import QRCodeScanner from './sub_screen/QR_Scanner';
 import LoadingDisplay from './sub_screen/loading';
 import InsertPage from './sub_screen/Insert';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 
 
@@ -45,7 +45,7 @@ function App() {
         unmountOnExit
       >
         <div>
-          <ToastContainer/>
+          <Toaster/>
           <div ref={nodeRef} className="page">
             {getPageComponent(currentPage)}
           </div>
