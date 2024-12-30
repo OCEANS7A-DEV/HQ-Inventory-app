@@ -37,10 +37,14 @@ export const UPDATE = async(
       URL_STRING,
       {
         method: 'POST',
+        headers: {
+          "Content-Type" : "application/x-www-form-urlencoded",
+        },
         body: JSON.stringify({
+          sub_action: 'get',
           action: 'updateCells',
           sheetName: '在庫一覧',
-          updata: data
+          //updata: data
         })
       },
     );
