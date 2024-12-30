@@ -1,6 +1,7 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
 import '../css/QR.css'
 import { AllData, UPDATE } from '../backend/ServerEnd';
+import { toast } from 'react-toastify';
 
 
 
@@ -27,11 +28,13 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       [code]: numberValue
     }));
   };
-  const DataUpdate = () => {
+  const DataUpdate = async() => {
     setisLoading(true);
     
-    UPDATE(inputData);
-
+    const result = await UPDATE(inputData);
+    if(result === 'complete'){
+      toast.success('入力完了')
+    }
     setisLoading(false);
     setCurrentPage('QR_Scanner');
   }

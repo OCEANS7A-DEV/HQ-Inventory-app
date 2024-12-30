@@ -1,7 +1,6 @@
 const Get_URL = 'https://script.google.com/macros/s/AKfycbwdZ3lhe2QH2BChceXrTsxzGAkUd9EgZ2AZ7pWXWlMJvwtOtOcjXDTOXUmdBRJgCs25/exec';
 const URL_STRING = "https://script.google.com/macros/s/AKfycbznkMazxV3wlmS66uEHcOSRkI_SBQkdfT_MfMzJnvueFkSwDxGFiLlmFtq-MfMM6ldL/exec";
 export default async function main() {};
-import { toast } from 'react-toastify';
 
 
 
@@ -52,9 +51,7 @@ export const UPDATE = async(
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     const result = await response.json();
-    if(result === 'complete'){
-      toast.success('入力完了')
-    }
+    return result;
 
   }catch(e){
     return (e);
