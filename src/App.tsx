@@ -36,26 +36,28 @@ function App() {
   };
 
   return (
-    <TransitionGroup component={null}>
-      <CSSTransition
-        key={currentPage}
-        timeout={{ enter: 500, exit: 300 }}
-        className="fade"
-        nodeRef={nodeRef}
-        unmountOnExit
-      >
-        
-        <div>
-          <Toaster/>
-          <div ref={nodeRef} className="page">
-            {getPageComponent(currentPage)}
+    <>
+      <Toaster/>
+      <TransitionGroup component={null}>
+        <CSSTransition
+          key={currentPage}
+          timeout={{ enter: 500, exit: 300 }}
+          className="fade"
+          nodeRef={nodeRef}
+          unmountOnExit
+        >
+          <div>
+            <div ref={nodeRef} className="page">
+              {getPageComponent(currentPage)}
+            </div>
+            <div className="Loadingarea">
+              <LoadingDisplay isLoading={isLoading} />
+            </div>
           </div>
-          <div className="Loadingarea">
-            <LoadingDisplay isLoading={isLoading} />
-          </div>
-        </div>
-      </CSSTransition>
-    </TransitionGroup>
+        </CSSTransition>
+      </TransitionGroup>
+    </>
+    
   )
 }
 
