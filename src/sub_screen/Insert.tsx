@@ -93,7 +93,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => DataUpdate()}>
         現物数入力
       </a>
-      <ToastContainer/>
+      
     </div>
   );
 };
