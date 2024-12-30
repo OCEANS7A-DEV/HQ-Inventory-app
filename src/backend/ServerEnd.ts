@@ -32,7 +32,6 @@ export const UPDATE = async(
   data: any
 ) => {
   try {
-    console.log(data);
     const response = await fetch(
       URL_STRING,
       {
@@ -44,7 +43,7 @@ export const UPDATE = async(
           sub_action: 'get',
           action: 'updateCells',
           sheetName: '在庫一覧',
-          //updata: data
+          updata: data
         })
       },
     );
