@@ -66,7 +66,9 @@ a {
 }
 
 
-
+.QR-product-name {
+  overflow: hidden;
+}
 .QR-product-inputNum {
   margin-left: 10px;
   width: 80px;
