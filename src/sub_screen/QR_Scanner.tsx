@@ -9,7 +9,6 @@ interface SettingProps {
 }
 
 export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingProps) {
-  const [result, setResult] = useState<string>('');
 
   useEffect(() => {
     const scanner = new Html5Qrcode("qr-reader");
@@ -30,7 +29,6 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
               qrbox: { width: 250, height: 250 },
             },
             (decodedText) => {
-              setResult(decodedText);
               const dataArray = JSON.parse(decodedText)
               setCodeList(dataArray);
               setCurrentPage('InsertPage');
