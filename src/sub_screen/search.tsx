@@ -97,8 +97,9 @@ export default function WordSearch({ setCurrentPage, setisLoading, setCodeList }
             </table>
           </div>
         </div>
+        <div><a className="buttonUnderlineSt" type="button" onClick={() => setCurrentPage('QR_Scanner')}>QRスキャンへ</a></div>
       </div>
-      <div><a className="buttonUnderlineSt" type="button" onClick={() => setCurrentPage('QR_Scanner')}>QRスキャンへ</a></div>
+      
     </div>
     
   );
