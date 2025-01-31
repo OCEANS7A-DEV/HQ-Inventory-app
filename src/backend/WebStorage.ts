@@ -17,7 +17,7 @@ export const searchStr = async (searchword: string) => {
   const swKZ = jaconv.toKatakana(searchword);
   const swHZ = jaconv.toHiragana(swKZ);
   const swKH = jaconv.toHan(swKZ);
-  const data = JSON.parse(sessionStorage.getItem('data') ?? '');
+  const data = JSON.parse(localStorage.getItem('data') ?? '');
   if (!data || data.length === 0) {
     console.log('データが存在しません。');
     return [];
