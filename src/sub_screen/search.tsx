@@ -68,7 +68,7 @@ export default function WordSearch({ setCurrentPage, setisLoading, setCodeList }
         <div className="scrollable-table">
           <table className="search-data-table">
             <tbody className="datail">
-              {searchtabledata.map((row, index) => (
+              {tableData.map((row, index) => (
                 <tr key={index}>
                   <td className="scode">
                     <a
