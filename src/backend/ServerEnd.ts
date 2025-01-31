@@ -31,6 +31,7 @@ export const AllData = async(
 export const UPDATE = async(
   data: any
 ) => {
+  
   try {
     const response = await fetch(
       URL_STRING,

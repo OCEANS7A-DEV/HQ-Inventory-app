@@ -40,62 +40,65 @@ export default function WordSearch({ setCurrentPage, setisLoading, setCodeList }
 
 
   return (
-    <div className="WordSearch-area">
-      <div className="search-input">
-        <input
-          type="text"
-          value={SWord}
-          pattern="^[ぁ-ん]+$"
-          onChange={handlewordchange}
-          placeholder="検索ワードを入力"
-          onKeyDown={(e) => handleKeyDown(e)}
-        />
-        <a className="buttonUnderlineSe" onClick={productReSearch}>
-          検索
-        </a>
-      </div>
-      <div className="search-head">
-        <table className="search-head">
-          <thead>
-            <tr>
-              <th className="stcode">商品ナンバー</th>
-              <th className="stname">商品名</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-      <div className="search-table">
-        <div className="scrollable-table">
-          <table className="search-data-table">
-            <tbody className="datail">
-              {tableData.map((row, index) => (
-                <tr key={index}>
-                  <td className="scode">
-                    <a
-                      className="buttonUnderlineDR"
-                      role="button"
-                      href="#"
-                      onClick={() => codeSelect(row)}
-                    >
-                      {row[1]}
-                    </a>
-                  </td>
-                  <td className="sname">
-                    <a
-                      className="buttonUnderlineD"
-                      role="button"
-                      href="#"
-                      onClick={() => codeSelect(row)}
-                    >
-                      {row[2]}
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+    <div className="search-window">
+      <div className="WordSearch-area">
+        <div className="search-input">
+          <input
+            type="text"
+            value={SWord}
+            pattern="^[ぁ-ん]+$"
+            onChange={handlewordchange}
+            placeholder="検索ワードを入力"
+            onKeyDown={(e) => handleKeyDown(e)}
+          />
+          <a className="buttonUnderlineSe" onClick={productReSearch}>
+            検索
+          </a>
+        </div>
+        <div className="search-head">
+          <table className="search-head">
+            <thead>
+              <tr>
+                <th className="stcode">商品ナンバー</th>
+                <th className="stname">商品名</th>
+              </tr>
+            </thead>
           </table>
+        </div>
+        <div className="search-table">
+          <div className="scrollable-table">
+            <table className="search-data-table">
+              <tbody className="datail">
+                {tableData.map((row, index) => (
+                  <tr key={index}>
+                    <td className="scode">
+                      <a
+                        className="buttonUnderlineDR"
+                        role="button"
+                        href="#"
+                        onClick={() => codeSelect(row)}
+                      >
+                        {row[1]}
+                      </a>
+                    </td>
+                    <td className="sname">
+                      <a
+                        className="buttonUnderlineD"
+                        role="button"
+                        href="#"
+                        onClick={() => codeSelect(row)}
+                      >
+                        {row[2]}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
+    
   );
 }

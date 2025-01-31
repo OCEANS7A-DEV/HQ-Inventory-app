@@ -28,11 +28,12 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       [code]: numberValue
     }));
   };
-  
+
   const DataUpdate = async() => {
     setisLoading(true);
     
     const result = await UPDATE(inputData);
+    console.log(result)
     if(result === 'complete'){
       toast.success('入力完了')
     }
