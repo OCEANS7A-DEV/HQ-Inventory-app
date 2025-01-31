@@ -79,8 +79,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
                 <div>
                   <input
                     className="QR-product-inputNum"
-                    type="number"
-                    pattern="^[0-9\-\/()]+$"
+                    type="text"
                     placeholder='現物数'
                     value={inputData[row[1]] || ''}
                     onChange={(e) => numchange(row[1], e)}
