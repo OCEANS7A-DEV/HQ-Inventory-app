@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
+import { localStorageSet } from '../backend/WebStorage'
 
 
 interface SettingProps {
@@ -51,11 +52,19 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
     };
   }, []);
 
+  useEffect(() => {
+    localStorageSet()
+  },[])
+
   return (
-    <div>
-      <h1>QRコードをスキャンしてください。</h1>
-      <div id="qr-reader"style={{ width: '100dvw'}}></div>
-    </div>
+    <>
+      <div>
+        <h1>QRコードをスキャンしてください。</h1>
+        <div id="qr-reader"style={{ width: '100dvw'}}></div>
+        <a className="buttonUnderlineSt" type="button" onClick={() => setCurrentPage('WordSearch')}>その他商品</a>
+      </div>
+    </>
+    
   );
 };
 

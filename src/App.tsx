@@ -7,6 +7,7 @@ import QRCodeScanner from './sub_screen/QR_Scanner';
 import LoadingDisplay from './sub_screen/loading';
 import InsertPage from './sub_screen/Insert';
 import toast, { Toaster } from 'react-hot-toast';
+import WordSearch from './sub_screen/search';
 
 
 
@@ -28,6 +29,8 @@ function App() {
         return <QRCodeScanner setCurrentPage={setCurrentPage} setCodeList={setCodeList}/>;
       case 'InsertPage':
         return <InsertPage setCurrentPage={setCurrentPage} codeList={codeList} setisLoading={setisLoading}/>;
+      case 'WordSearch':
+        return <WordSearch setCurrentPage={setCurrentPage} setCodeList={setCodeList} setisLoading={setisLoading} />
       case 'TEST':
         return <TEST/>;
       default:

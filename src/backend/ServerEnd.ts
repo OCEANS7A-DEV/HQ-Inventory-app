@@ -58,3 +58,26 @@ export const UPDATE = async(
   }
 };
 
+export const stockList = async(
+) => {
+  try {
+    const response = await fetch(
+      Get_URL,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          action: 'allData',
+          sheetName: '在庫一覧',
+        })
+      },
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    const result = await response.json();
+    return result;
+
+  }catch(e){
+    return (e);
+  }
+};

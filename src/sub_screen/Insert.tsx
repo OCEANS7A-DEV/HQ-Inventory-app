@@ -28,6 +28,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       [code]: numberValue
     }));
   };
+  
   const DataUpdate = async() => {
     setisLoading(true);
     
