@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import '../css/ProductSearchWord.css';
 import { searchStr } from '../backend/WebStorage';
+import { AllClearCells } from '../backend/ServerEnd';
 
 
 interface SettingProps {
@@ -98,8 +99,8 @@ export default function WordSearch({ setCurrentPage, setisLoading, setCodeList }
           </div>
         </div>
         <div><a className="buttonUnderlineSt" type="button" onClick={() => setCurrentPage('QR_Scanner')}>QRスキャンへ</a></div>
+        <div><a className="buttonUnderlineSt" type="button" onClick={() => AllClearCells()}>現物数クリア</a></div>
       </div>
-      
     </div>
     
   );

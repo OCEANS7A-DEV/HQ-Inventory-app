@@ -60,6 +60,7 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
         <h1>QRコードをスキャンしてください。</h1>
         <div id="qr-reader"style={{ width: '100dvw'}}></div>
         <a className="buttonUnderlineSt" type="button" onClick={() => setCurrentPage('WordSearch')}>その他商品</a>
+        
       </div>
     </>
     
