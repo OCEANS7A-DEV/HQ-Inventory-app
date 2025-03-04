@@ -98,8 +98,10 @@ export default function WordSearch({ setCurrentPage, setisLoading, setCodeList }
             </table>
           </div>
         </div>
-        <div><a className="buttonUnderlineSt" type="button" onClick={() => setCurrentPage('QR_Scanner')}>QRスキャンへ</a></div>
-        <div><a className="buttonUnderlineSt" type="button" onClick={() => AllClearCells()}>現物数クリア</a></div>
+        <div>
+          <a className="buttonUnderlineSt" type="button" onClick={() => setCurrentPage('QR_Scanner')}>QRスキャンへ</a>
+          <a className="buttonUnderlineSt" type="button" onClick={() => AllClearCells()}>現物数クリア</a>
+        </div>
       </div>
     </div>
     
