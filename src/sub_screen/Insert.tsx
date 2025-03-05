@@ -125,9 +125,9 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
         <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => DataUpdate()}>
           現物数入力
         </a>
-        <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => Test()}>
+        {/* <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => Test()}>
           test
-        </a>
+        </a> */}
       </div>
     </div>
   );
