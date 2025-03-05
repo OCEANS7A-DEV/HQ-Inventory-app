@@ -12,21 +12,17 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
 
   useEffect(() => {
     const scanner = new Html5Qrcode("qr-reader");
-    
     navigator.mediaDevices.getUserMedia({ video: true })
     .then(() => {
       return navigator.mediaDevices.enumerateDevices();
     }).then((devices) => {
       const videoDevices = devices.filter((device) => device.kind === 'videoinput');
-      console.log(devices);
       const backCamera = videoDevices.find((device) =>
         device.label.includes('back') || device.label.includes('背面')  || device.label.includes('Webcam') || device.label.includes('Camera') 
       );
-      console.log(backCamera)
       const cameraId = backCamera?.deviceId || videoDevices[0].deviceId;
       
       if (cameraId) {
-        console.log(cameraId)
         scanner
           .start(
             cameraId,
@@ -35,7 +31,6 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
               qrbox: { width: 250, height: 250 },
             },
             (decodedText) => {
-              console.log(decodedText)
               const dataArray = JSON.parse(decodedText)
               setCodeList(dataArray);
               setCurrentPage('InsertPage');

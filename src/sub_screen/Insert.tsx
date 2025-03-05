@@ -30,23 +30,40 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
   };
 
   const DataUpdate = async() => {
-    setisLoading(true);
-    console.log(inputData)
-    //const validData = inputData;
-    //return
-    const result = await UPDATE(inputData);
-    if(result === 'complete'){
+    //setisLoading(true);
+    const validData = Object.fromEntries(
+      Object.entries(inputData).filter(([key, value]) => value !== '')
+    );
+    if(Object.keys(validData).length > 0){
+      //const result = await UPDATE(validData);
+      await toast.promise(UPDATE(validData),{loading: '入力中...',
+        success: <b>入力完了</b>,
+        error: <b>入力失敗</b>
+      })
+      //setisLoading(false);
+      setCurrentPage('QR_Scanner');
+    }else if(Object.keys(validData).length == 0){
       toast.success('入力完了')
     }
-    setisLoading(false);
-    setCurrentPage('QR_Scanner');
+    
   }
 
   const Test = async() => {
-    console.log(inputData)
-    const validData = inputData.filter(row => row.value !== 0);
-    console.log(validData)
-    return
+    //setisLoading(true);
+    const validData = Object.fromEntries(
+      Object.entries(inputData).filter(([key, value]) => value !== '')
+    );
+    if(Object.keys(validData).length > 0){
+      //const result = await UPDATE(validData);
+      await toast.promise(UPDATE(validData),{loading: '入力中...',
+        success: <b>入力完了</b>,
+        error: <b>入力失敗</b>
+      })
+      //setisLoading(false);
+      setCurrentPage('QR_Scanner');
+    }else if(Object.keys(validData).length == 0){
+      toast.success('入力完了')
+    }
   }
 
   useEffect(() => {
@@ -54,6 +71,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
       try {
         setisLoading(true); // ローディング開始
         const data = await AllData(); // 全データを取得
+        console.log(data)
         const resultData = codeList.map(code => {
           return data.find(row => row[1] == code); // 条件に一致するデータを取得
         });
@@ -68,8 +86,10 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
     fetchData();
     const inputList = {};
     for (let i = 0; i < codeList.length; i++){
-      inputList[codeList[i]] = 0;
+      //console.log(codeList[i])
+      inputList[codeList[i]] = '';
     }
+    console.log(inputList)
     setInputData(inputList)
   }, []); // codeList に依存
   
@@ -83,7 +103,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
               <div className="QR-product-code">商品コード: {row[1]}</div>
               <div className="QR-product-name">商品名: {row[2]}</div>
               <div className="QR-product-Num">
-                <div className="QR-product-dataNum">データ上在庫: {row[9]}</div>
+                <div className="QR-product-dataNum">データ上在庫: {row[12]}</div>
                 <div>
                   <input
                     className="QR-product-inputNum"
