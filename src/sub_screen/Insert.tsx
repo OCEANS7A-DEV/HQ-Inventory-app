@@ -48,7 +48,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
     
   }
 
-  const Test = async() => {
+  const Test = async() => { //test用で基本使わない
     //setisLoading(true);
     const validData = Object.fromEntries(
       Object.entries(inputData).filter(([key, value]) => value !== '')
