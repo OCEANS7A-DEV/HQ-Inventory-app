@@ -43,7 +43,7 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
   }
 
   const Test = async() => {
-    //console.log(inputData)
+    console.log(inputData)
     const validData = inputData.filter(row => row.value !== 0);
     console.log(validData)
     return
