@@ -18,8 +18,8 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
       const backCamera = videoDevices.find((device) =>
         device.label.toLowerCase().includes('back') || device.label.includes('背面')
       );
-      
-      console.log(devices)
+
+      console.log(videoDevices)
       const cameraId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
       console.log(cameraId)
       if (cameraId) {
