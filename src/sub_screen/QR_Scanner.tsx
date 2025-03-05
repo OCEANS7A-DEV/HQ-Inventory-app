@@ -18,16 +18,15 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
       return navigator.mediaDevices.enumerateDevices();
     }).then((devices) => {
       const videoDevices = devices.filter((device) => device.kind === 'videoinput');
-      //console.log(devices);
+      console.log(devices);
       const backCamera = videoDevices.find((device) =>
-        device.label.toLowerCase().includes('back') || device.label.includes('背面')
+        device.label.includes('back') || device.label.includes('背面')  || device.label.includes('Webcam') || device.label.includes('Camera') 
       );
-
-      //console.log(videoDevices[0].deviceId)
-
-      const cameraId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
-      //console.log(cameraId)
+      console.log(backCamera)
+      const cameraId = backCamera?.deviceId || videoDevices[0].deviceId;
+      
       if (cameraId) {
+        console.log(cameraId)
         scanner
           .start(
             cameraId,
@@ -36,6 +35,7 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
               qrbox: { width: 250, height: 250 },
             },
             (decodedText) => {
+              console.log(decodedText)
               const dataArray = JSON.parse(decodedText)
               setCodeList(dataArray);
               setCurrentPage('InsertPage');
@@ -51,10 +51,6 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
     }).catch((err) => {
       console.error('デバイスの取得に失敗:', err);
     });
-
-    return () => {
-      //scanner.stop();
-    };
   }, []);
 
   useEffect(() => {
@@ -70,7 +66,6 @@ export default function QRCodeScanner({ setCurrentPage, setCodeList }: SettingPr
         
       </div>
     </>
-    
   );
 };
 

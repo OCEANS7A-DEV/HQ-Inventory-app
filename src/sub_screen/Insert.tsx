@@ -31,12 +31,22 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
 
   const DataUpdate = async() => {
     setisLoading(true);
+    console.log(inputData)
+    //const validData = inputData;
+    //return
     const result = await UPDATE(inputData);
     if(result === 'complete'){
       toast.success('入力完了')
     }
     setisLoading(false);
     setCurrentPage('QR_Scanner');
+  }
+
+  const Test = async() => {
+    //console.log(inputData)
+    const validData = inputData.filter(row => row.value !== 0);
+    console.log(validData)
+    return
   }
 
   useEffect(() => {
@@ -94,6 +104,9 @@ export default function InsertPage({ setCurrentPage, codeList, setisLoading }: S
         </a>
         <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => DataUpdate()}>
           現物数入力
+        </a>
+        <a className="buttonUnderlineSt" id="main_back" type="button" onClick={() => Test()}>
+          test
         </a>
       </div>
     </div>
